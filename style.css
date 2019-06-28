@@ -46,4 +46,9 @@ body {
 
 .timer {
   font-size: 10vh;
+  cursor: default;
+}
+
+.sub {
+  cursor: default;
 }

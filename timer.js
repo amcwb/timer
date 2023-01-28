@@ -41,7 +41,9 @@ class Timer {
       this.lastStopped = Date.now()
     } else {
       // Stores milliseconds to be skipped from timer
-      this.skipped += Date.now() - this.lastStopped;
+      if (this.lastStopped) {
+        this.skipped += Date.now() - this.lastStopped;  
+      }
     }
     return this.going;
   }

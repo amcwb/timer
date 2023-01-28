@@ -25,12 +25,12 @@ class Timer {
           that.date = Date.now();
         }
         
-        var asString = new Date(Date.now() - (that.date + that.skipped)).toISOString().substr(11, 11);
+        var asString = new Date(Date.now() - that.date - that.skipped).toISOString().substr(11, 11);
 
         document.getElementById('counter').textContent = asString;
         window.document.title = "Timer – " + asString;
         
-        document.getElementById('seconds').textContent = ((Date.now() - (that.date + that.skipped)) / 1000).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+        document.getElementById('seconds').textContent = ((Date.now() - that.date - that.skipped) / 1000).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
       }
     }, 10)
   }

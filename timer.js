@@ -30,7 +30,7 @@ class Timer {
         document.getElementById('counter').textContent = asString;
         window.document.title = "Timer – " + asString;
         
-        document.getElementById('seconds').textContent = ((Date.now() - that.date - that.skipped) / 1000).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+        document.getElementById('seconds').textContent = ((Date.now() - (that.date - that.skipped)) / 1000).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
       }
     }, 10)
   }

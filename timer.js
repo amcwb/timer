@@ -37,7 +37,7 @@ class Timer {
   
   toggle () {
     this.going = !this.going;
-    if (this.going) {
+    if (!this.going) {
       this.lastStopped = Date.now()
     } else {
       // Stores milliseconds to be skipped from timer

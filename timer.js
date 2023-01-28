@@ -12,25 +12,37 @@ class Timer {
   constructor () {
     this.time = 0;
     this.going = false;
+    this.date = null;
+    this.lastStopped = null;
+    this.skipped = 0;
   }
   
   run () {
-    let that = this;
+    let that = this
     setInterval(function (){
       if (that.going) {
-        that.time += 0.01;
-        var asString = new Date(that.time * 1000).toISOString().substr(11, 11);
-//        var asString = that.time.toFixed(2).toString().padEnd(5, '0');
+        if (!that.date) {
+          that.date = Date.now();
+        }
+        
+        var asString = new Date(Date.now() - that.date - that.skipped).toISOString().substr(11, 11);
+
         document.getElementById('counter').textContent = asString;
         window.document.title = "Timer – " + asString;
         
-        document.getElementById('seconds').textContent = that.time.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+        document.getElementById('seconds').textContent = ((Date.now() - that.date - that.skipped) / 1000).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
       }
     }, 10)
   }
   
   toggle () {
     this.going = !this.going;
+    if (this.going) {
+      this.lastStopped = Date.now()
+    } else {
+      // Stores milliseconds to be skipped from timer
+      this.skipped += Date.now() - this.lastStopped;
+    }
     return this.going;
   }
 }

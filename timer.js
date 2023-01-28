@@ -25,7 +25,7 @@ class Timer {
           that.date = Date.now();
         }
         
-        var asString = new Date(Date.now() - that.date - that.skipped).toISOString().substr(11, 11);
+        var asString = new Date(Date.now() - (that.date - that.skipped)).toISOString().substr(11, 11);
 
         document.getElementById('counter').textContent = asString;
         window.document.title = "Timer – " + asString;
